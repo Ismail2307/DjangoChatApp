@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{%block title %}HomePage{% endblock%}
+
+{%block content%}
+<h1>ChatRooms</h1>
+
+{%for chatroom in chatrooms %}
+  <div>
+      <h2>{{chatroom.chatroom.name}}</h2>
+      <small>{{chatroom.member_count}} members</small>
+      <small>Created at:{{chatroom.chatroom.created_at}}</small>
+
+   {% for chat in chatrooms %}
+    <a href="{% url 'view_chat' chat.chatroom.id %}">Send Message</a>
+    <p>Members: {{ chat.member_count }}</p>
+{% endfor %}
+  </div>
+{%endfor%}
+
+{%endblock%}
